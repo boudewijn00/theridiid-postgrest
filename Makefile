@@ -18,7 +18,7 @@ deploy:
 # `make revert STEPS=3` to revert the last 3 changes.
 revert:
 ifdef STEPS
-	sqitch revert --to @HEAD~$(STEPS) "$(DB_URI)"
+	sqitch revert --to HEAD~$(STEPS) "$(DB_URI)"
 else
 	sqitch revert "$(DB_URI)"
 endif
