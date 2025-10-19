@@ -1,0 +1,39 @@
+services:
+
+  postgrest-db:
+    container_name: postgrest-db
+    image: postgres:17-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - DB_ANON_ROLE=${DB_ANON_ROLE}
+      - DB_NON_ANON_ROLE=${DB_NON_ANON_ROLE}
+      - DB_SCHEMA=${DB_SCHEMA}
+    volumes:
+      - "./initdb:/docker-entrypoint-initdb.d"
+      - "./postgres-docker:/var/lib/postgresql/data"
+    networks:
+      - postgrest-backend
+    restart: always
+
+  postgrest:
+    container_name: postgrest
+    image: postgrest/postgrest:latest
+    ports:
+      - "8000:3000"
+    environment:
+      - PGRST_DB_URI=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgrest-db:5432/${POSTGRES_DB}
+      - PGRST_DB_SCHEMA=${DB_SCHEMA}
+      - PGRST_DB_ANON_ROLE=${DB_ANON_ROLE}
+      - PGRST_OPENAPI_SERVER_PROXY_URI=http://localhost:8000
+      - PGRST_JWT_SECRET=${JWT_SECRET}
+    networks:
+      - postgrest-backend
+    restart: always
+
+networks:
+  postgrest-backend:
+    driver: bridge

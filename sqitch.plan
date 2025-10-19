@@ -1,0 +1,7 @@
+%syntax-version=1.0.0
+%project=theridiid
+
+create_notes_table 2025-10-19T12:12:39Z Boudewijn Overvliet <boudewijnovervliet@Boudewijns-Mac-Studio.fritz.box> # deploy/create_notes_table.sql\n     revert/create_notes_table.sql
+create_tags_table 2025-10-19T12:31:23Z Boudewijn Overvliet <boudewijnovervliet@Boudewijns-Mac-Studio.fritz.box> # deploy/create_tags_table.sql\n     revert/create_tags_table.sql
+create_folders_table 2025-10-19T12:53:00Z Boudewijn Overvliet <boudewijnovervliet@Boudewijns-Mac-Studio.fritz.box> # deploy/create_folders_table.sql\n     revert/create_folders_table.sql
+create_resources_table 2025-10-19T13:07:15Z Boudewijn Overvliet <boudewijnovervliet@Boudewijns-Mac-Studio.fritz.box> #      deploy/create_resources_table.sql\n     revert/create_resources_table.sql
