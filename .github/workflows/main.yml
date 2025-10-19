@@ -1,0 +1,30 @@
+name: Sync Files to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Copy SSH key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" >> ./id_rsa
+          chmod 600 ./id_rsa
+
+      - name: Copy files to server
+        run: scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ./id_rsa ./* root@"${{ secrets.SERVER_IP}}":/root/theridiid-postgrest
+
+      - name: SSH into server
+        run: |
+          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ./id_rsa root@"${{ secrets.SERVER_IP}}" "
+          cd /root/theridiid-postgrest
+          make deploy
+          cd ..
+          docker-compose restart
+          "
