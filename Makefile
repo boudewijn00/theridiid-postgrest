@@ -4,8 +4,6 @@
 -include .env
 export
 
-# Default database URI. This can be overridden from the command line, e.g.,
-#   make deploy DB_URI='db:pg:otherdb'
 DB_URI ?= db:pg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@127.0.0.1:5432/${POSTGRES_DB}
 
 .PHONY: deploy revert
@@ -14,11 +12,12 @@ DB_URI ?= db:pg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@127.0.0.1:5432/${POSTGRE
 deploy:
 	sqitch deploy "$(DB_URI)"
 
-# Revert changes. Call with `make revert` to revert one change, or
-# `make revert STEPS=3` to revert the last 3 changes.
+# Revert changes all or one change back.
 revert:
-ifdef STEPS
-	sqitch revert --to HEAD~$(STEPS) "$(DB_URI)"
-else
-	sqitch revert "$(DB_URI)"
-endif
+	@if [ -n "$(STEPS)" ]; then \
+		for i in $$(seq 1 $(STEPS)); do \
+			sqitch revert --to @HEAD^1 "$(DB_URI)"; \
+		done \
+	else \
+		sqitch revert "$(DB_URI)"
+	fi
