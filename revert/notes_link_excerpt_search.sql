@@ -2,13 +2,13 @@
 
 BEGIN;
 
-DROP TRIGGER tsvectorupdate ON public.notes;
+DROP TRIGGER IF EXISTS tsvectorupdate ON public.notes;
 
-DROP FUNCTION public.notes_link_excerpt_tsv_trigger();
+DROP FUNCTION IF EXISTS public.notes_link_excerpt_tsv_trigger();
 
-DROP INDEX public.notes_link_excerpt_tsv_idx;
+DROP INDEX IF EXISTS public.notes_link_excerpt_tsv_idx;
 
 ALTER TABLE public.notes
-  DROP COLUMN link_excerpt_tsv;
+  DROP COLUMN IF EXISTS link_excerpt_tsv;
 
 COMMIT;
