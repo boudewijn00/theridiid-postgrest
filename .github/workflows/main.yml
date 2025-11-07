@@ -25,6 +25,5 @@ jobs:
           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ./id_rsa root@"${{ secrets.SERVER_IP}}" "
           cd /root/theridiid-postgrest
           sqitch deploy
-          cd ..
           docker-compose restart
           "
