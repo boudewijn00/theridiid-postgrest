@@ -2,7 +2,7 @@
 
 BEGIN;
 
-ALTER TABLE api.notes
+ALTER TABLE notes
   ADD COLUMN link_favicon TEXT;
 
 COMMIT;

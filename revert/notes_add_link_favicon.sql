@@ -2,7 +2,7 @@
 
 BEGIN;
 
-ALTER TABLE api.notes
+ALTER TABLE notes
   DROP COLUMN link_favicon;
 
 COMMIT;

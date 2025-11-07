@@ -3,7 +3,7 @@
 BEGIN;
 
 SELECT link_favicon
-  FROM api.notes
+  FROM notes
  WHERE FALSE;
 
 ROLLBACK;
