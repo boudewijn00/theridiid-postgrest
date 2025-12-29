@@ -1,0 +1,2 @@
+ALTER TABLE notes
+ADD COLUMN hacker_news_id INTEGER;
