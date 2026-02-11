@@ -10,3 +10,4 @@ notes_add_link_image 2025-11-06T10:00:00Z Boudewijn Overvliet <boudewijnovervlie
 notes_add_link_favicon 2025-11-07T09:00:00Z Boudewijn Overvliet <boudewijnovervliet@Boudewijns-Mac-Studio.fritz.box> # Add link_favicon column to notes table.
 alter_notes_add_hacker_news_id 2025-12-29T10:00:00Z Boudewijn Overvliet <boudewijnovervliet@Boudewijns-Mac-Studio.fritz.box> # Add hacker_news_id column to notes table.
 notes_unique_note_id 2026-02-08T10:00:00Z Boudewijn Overvliet <boudewijnovervliet@Boudewijns-Mac-Studio.fritz.box> # Add unique constraint on note_id for PostgREST upsert.
+create_subscribers_table 2026-02-11T20:54:20Z Boudewijn Overvliet <boudewijnovervliet@Boudewijns-Mac-Studio.fritz.box> # Create subscribers table with first_name, last_name, email, topics array, frequency, and created_at.
