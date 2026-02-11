@@ -9,7 +9,7 @@ CREATE TABLE subscribers (
     email text NOT NULL UNIQUE,
     topics text [],
     frequency text NOT NULL,
-    created_at timestamp with time zone default current_timestamp
+    created_at timestamp with time zone NOT NULL default current_timestamp
 );
 
 COMMIT;
